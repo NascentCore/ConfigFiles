@@ -1,0 +1,90 @@
+colo evening
+
+" Map the leader key.
+let mapleader=","
+
+set nofixendofline
+set autochdir
+set autoindent
+set backspace=indent,start,eol
+set colorcolumn=81
+set expandtab
+" https://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
+set formatoptions=tcroq
+set history=500
+set hlsearch
+set incsearch
+set number
+set pastetoggle=<F5>
+set ruler
+set scrolloff=20
+set scs
+set shiftwidth=2
+set showmatch
+set smarttab
+set softtabstop=2
+set spell
+set tabstop=2
+set textwidth=80
+
+function! HasPaste()
+    if &paste
+        return 'P  '
+    en
+    return 'NP '
+endfunction
+set laststatus=2    " always show status line
+set showmode
+set showcmd
+set statusline=\ %{HasPaste()}%F%m%h\ %w\
+set statusline+=\ %r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c     "cursor column
+set statusline+=\ %l/%L\ %P   "cursor line/total lines Percentage
+
+nmap <C-n> :nohlsearch <CR>
+
+" For mini buffer explorer close current buffer.
+nmap <C-d> <C-w>kd<Esc>
+nnoremap H  :MBEbp<CR>
+nnoremap L  :MBEbn<CR>
+
+" Folding
+nnoremap <space> za
+nnoremap <C-c> zA
+vnoremap <space> zf
+vnoremap <C-c> zF
+vnoremap // y/<c-r>"<cr>
+
+" Saving and exiting
+imap <C-s> <Esc>:up<CR>
+vmap <C-s> <Esc>:up<CR>
+nmap <C-s> :up<CR>
+imap <C-q> <Esc>:wq<CR>
+vmap <C-q> <Esc>:wq<CR>
+nmap <C-q> :wq<CR>
+vmap <C-x> <Esc>:q!<CR>
+imap <C-x> <Esc>:q!<CR>
+nmap <C-x> :q!<CR>
+
+autocmd BufEnter *.go,*.py,*.h,*.cc set foldmethod=indent
+
+" Go does not have 80 column limitation.
+autocmd BufEnter *.go set textwidth=120
+autocmd BufEnter *.go set colorcolumn=121
+
+" Removes trailing spaces.
+autocmd BufWritePre *.py,*.go,*.h,*.cc,*.sh,*.proto,*.md,*.bazel,*.yaml :%s/\s\+$//e
+
+" By default, Vim recognizes files with the .md suffix as Modula2 files rather
+" than Markdown files.
+autocmd BufNewFile,BufRead *.md setfiletype markdown
+
+" Spellcheck color
+hi clear SpellBad
+hi SpellBad cterm=underline
+" Set style for gVim
+hi SpellBad gui=undercurl
+
+au BufNewFile,BufRead * syntax spell toplevel

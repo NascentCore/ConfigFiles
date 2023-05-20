@@ -1,0 +1,33 @@
+alias rm='rm -i'
+alias ll='ls -lh'
+
+alias c='xclip -selection clipboard'
+alias cl='/usr/bin/clang++ -std=c++11'
+alias g=git
+alias h=history
+
+alias b=bazel
+alias bb='b build'
+alias br='b run'
+
+alias dev='ssh -o "ServerAliveInterval 60" -i ~/Workspace/tricorder-observability/dev-env/aws/ec2/key_pairs/ap-southeast-1/yaxiong.pem yaxiong@spock.tricorder.dev'
+
+alias dud1='du -h -d1'
+
+alias main='git checkout main'
+alias pr='git push -u origin HEAD'
+alias prf='pr -f'
+alias pull='git pull'
+alias rb='git add . && git rebase --continue'
+alias rbfiles='git diff --name-only --diff-filter=U --relative'
+alias hist='git log --pretty=oneline --abbrev-commit'
+alias trace_pipe='sudo cat /sys/kernel/debug/tracing/trace_pipe'
+
+alias k=kubectl
+alias pods='kubectl get pods'
+alias services='kubectl get services'
+alias ns='kubectl get ns'
+
+# For invoke tailscale on Mac, see:
+# https://tailscale.com/kb/1080/cli/#using-the-cli
+alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'

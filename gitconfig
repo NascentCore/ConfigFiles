@@ -1,0 +1,70 @@
+[core]
+	excludesfile = ~/.gitignore_global
+  editor = vim
+[user]
+	email = yzhao@tricorder.dev
+	name = Yaxiong Zhao
+	signingkey = 342A8F974E5A3F46
+[alias]
+	st = status
+	hist = log --pretty=oneline --abbrev-commit
+	co = checkout
+	br = branch
+	ci = commit --signoff
+	cia = commit -a --signoff
+  pr = push -u origin HEAD
+[color]
+	ui = auto
+[push]
+	default = matching
+[diff]
+  tool = meld
+	guitool = meld
+[credential]
+	helper = store
+[difftool]
+  prompt = false
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+[pager]
+  branch = false
+  # diff = false
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true
+[safe]
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/src/cc/libbpf
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/bpftool
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc
+	directory = /home/yaxiong/Workspace/tricorder-observability/bcc/libbpf-tools/blazesym

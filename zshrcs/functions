@@ -1,0 +1,166 @@
+function isgit() {
+  [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1
+}
+
+function _project_root() {
+  echo ~/workspace/resource_manager/src/github.com/justicezyx/$1
+}
+
+function _gls() {
+  prj=$(ls ~/workspace/resource_manager/src/github.com/justicezyx)
+  prj_list=(${(@f)prj})
+  local index=1
+  for p in $prj_list
+  do
+    echo $index $p
+    (( index += 1 ))
+  done
+  export prj_list
+}
+
+function got() {
+  _gls
+  echo -n "Which repo to pick: "
+  read repo_index
+  cd $(_project_root $prj_list[$repo_index])
+}
+
+function remove() {
+  _gls
+  echo -n "Which repo to remove: "
+  read repo_index
+  dir_to_remove="$(dirname $(_project_root $prj_list[$repo_index]))"
+  echo -n "rm -rf $dir_to_remove, are you sure? [y|n]: "
+  read response
+  if [[ "$response" == "y" ]]; then
+    rm -rf $dir_to_remove
+  fi
+  cd ~
+}
+
+function root() {
+  cd "$(git rev-parse --show-toplevel)"
+}
+
+function findoldfile() {
+  age=30
+  force=false
+
+  if [[ "$1" == "-f" ]]; then
+    force=true
+  elif [[ "$1" != "" ]]; then
+    age=$1
+  elif [[ "$2" == "-f" ]]; then
+    force=true
+  fi
+
+  echo "Display files modified $age minutes before:"
+  if $force; then
+    echo "Removing all file ..."
+    find -maxdepth 1 -mmin +$age -exec rm -rf {} \;
+  else
+    find -maxdepth 1 -mmin +$age
+  fi
+}
+
+function h() {
+  if [ -z "$*" ]; then
+    history
+  else
+    pattern="\ +[0-9]+\ +.+$@\b"
+    echo $pattern
+    history | egrep "$pattern"
+  fi
+}
+
+function work() {
+  if tmux has-session -t work; then
+    tmux a -t work
+  else
+    tmux new -s work
+  fi
+}
+
+function gopath() {
+  if [[ "$1" == "" ]]; then
+    echo "Needs a directory name, got empty..."
+    return
+  fi
+  export GOPATH=~/workspace/$1
+}
+
+# Check out a new branch from the tip of main branch
+function newbranch() {
+  git checkout main
+  git pull
+  git co -b "$1"
+}
+
+function gitresync() {
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  git checkout main
+  git pull
+  git checkout ${current_branch}
+  git rebase main
+}
+
+alias resync=gitresync
+alias sync='git rebase main'
+
+# Cleanup all unused docker container images
+function dcleanup() {
+  docker container prune --force
+  docker system prune --force
+}
+
+# Cleanup already merged branch
+function gitclean() {
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  git checkout main
+  git pull
+  git branch -d ${current_branch}
+}
+
+function rb() {
+  git add .
+  git rebase --continue
+}
+
+function contains() {
+    [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]] && return 0 || return 1
+}
+
+function gitrmbr() {
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+  if contains "main master" ${current_branch}; then
+    echo "We cannot let you delete '${current_branch}' ..."
+    return 1
+  fi
+
+  echo "${current_branch}, is this the branch you want to delete remotely?"
+  select yn in "Yes" "No"; do
+      case $yn in
+          "Yes" ) break;;
+          "No" ) return;;
+      esac
+  done
+
+  git push origin -d ${current_branch}
+  gitclean
+}
+
+function gitrevert() {
+	fpath="$1"
+	git checkout main ${fpath}
+	git commit --all --message "Cleanup: Revert ${fpath}"
+}
+
+# Merge the current to main and push, and then remove current branch.
+function gitmerge() {
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  git checkout main
+  git merge ${current_branch}
+  git push -u origin HEAD
+  git branch -d ${current_branch}
+}

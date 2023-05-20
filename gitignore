@@ -1,0 +1,13 @@
+# compiled source.
+*.pyc
+*.[oa]
+*.out
+*.so
+*.class
+a.out
+
+# vim swap file.
+*.swp
+
+# Mac FS metadata file
+.DS_store
