@@ -71,6 +71,3 @@ export GPG_TTY=$(tty)
 source ~/.zshrcs/variables
 source ~/.zshrcs/aliases
 source ~/.zshrcs/functions
-source ~/Workspace/tricorder-observability/starship/devops/dev_image/env.inc
-source ~/Workspace/tricorder-observability/dev-env/rcfiles/alias
-source ~/Workspace/tricorder-observability/dev-env/rcfiles/functions
