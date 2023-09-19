@@ -1,7 +1,14 @@
 export EDITOR='vi'
-export GOPATH=~/Workspace/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/bin
-export PATH=$PATH:/Users/yzhao/bin
-export PATH=$PATH:/opt/tricorder/bin
-export PATH=$PATH:/opt/homebrew/bin
+
+# Default golang binary path
+export PATH=$PATH:/usr/local/go/bin
+
+# Golang configs
+# export GOPATH=~/Workspace/go
+# export PATH=$PATH:~/bin
+# export PATH=$PATH:$GOPATH/bin
+
+# Mac, uncomment the below for mac
+# export PATH=$PATH:/Users/yzhao/bin
+# export PATH=$PATH:/opt/tricorder/bin
+# export PATH=$PATH:/opt/homebrew/bin
