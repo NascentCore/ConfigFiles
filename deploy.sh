@@ -2,7 +2,7 @@
 
 if [ ! -d ~/.oh-my-zsh ]; then
   echo "Installing on-my-zsh..."
-  git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+  git clone --branch=master --single-branch --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 fi
 
 if [ ! -f ~/.vim/autoload/pathogen.vim ]; then
