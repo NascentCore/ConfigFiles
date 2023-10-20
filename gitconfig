@@ -24,8 +24,6 @@
 	helper = store
 [difftool]
   prompt = false
-[url "git@github.com:"]
-  insteadOf = https://github.com/
 [pager]
   branch = false
   # diff = false
